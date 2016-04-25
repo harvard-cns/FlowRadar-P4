@@ -14,6 +14,10 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+/*
+ * Modified by Yuliang Li liyuliang001@gmail.com
+ */
+
 header_type ethernet_t {
     fields {
         dstAddr : 48;
