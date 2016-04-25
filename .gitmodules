@@ -1,6 +1,6 @@
 [submodule "submodules/p4c-behavioral"]
 	path = submodules/p4c-behavioral
-	url = https://github.com/p4lang/p4c-behavioral.git
+	url = https://github.com/USC-NSL/p4c-behavioral.git
 [submodule "submodules/p4c-bm"]
 	path = submodules/p4c-bm
 	url = https://github.com/p4lang/p4c-bm.git
