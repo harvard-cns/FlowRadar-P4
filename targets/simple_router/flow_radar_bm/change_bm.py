@@ -1,10 +1,15 @@
 import re
+import os
 
 def changed(lines, token):
 	for line in lines:
 		if line.find(token) != -1:
 			return True
 	return False
+
+# copy required files
+def copy_files():
+	os.system("cp flow_radar.h ../build/bm/src")
 
 # change actions.c to add flow_radar lock
 def change_actions_c():
@@ -100,6 +105,7 @@ def change_p4_pd_rpc_thrift():
 	file.close()
 
 if __name__ == "__main__":
+	copy_files()
 	change_actions_c()
 	change_p4_pd_rpc_server_ipp()
 	change_p4_pd_rpc_thrift()
