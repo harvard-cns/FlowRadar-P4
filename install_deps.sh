@@ -64,6 +64,7 @@ sudo pip install crc16
 
 # build thrift from sources
 mkdir install_tmp
+echo "!!!!"
 
 cd install_tmp
 wget -c http://archive.apache.org/dist/thrift/0.9.2/thrift-0.9.2.tar.gz

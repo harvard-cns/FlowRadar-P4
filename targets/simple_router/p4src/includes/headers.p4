@@ -38,3 +38,10 @@ header_type ipv4_t {
         dstAddr: 32;
     }
 }
+
+header_type tcp_t {
+	fields {
+		srcPort : 16;
+		dstPort : 16;
+	}
+}

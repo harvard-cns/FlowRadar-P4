@@ -16,6 +16,8 @@ limitations under the License.
 
 #include "includes/headers.p4"
 #include "includes/parser.p4"
+#include "flow_radar.p4"
+
 
 action _drop() {
     drop();
@@ -79,10 +81,10 @@ table send_frame {
 control ingress {
     apply(ipv4_lpm);
     apply(forward);
+	apply(flow_radar);
 }
 
 control egress {
     apply(send_frame);
 }
-
 

@@ -20,6 +20,9 @@
 ifndef TARGET_ROOT
   $(error P4 program root not defined in TARGET_ROOT)
 endif
+ifdef USER_LIB_DIR
+LINK_USER_LIB := -L$(USER_LIB_DIR) -l$(USER_LIB)
+endif
 
 THIS_DIR := $(dir $(lastword $(MAKEFILE_LIST)))
 
@@ -91,7 +94,7 @@ ifndef GEN_THRIFT_PY_MODULE
   $(error p4c-bm does not define thrift-generated Python files in GEN_THRIFT_PY_MODULE)
 endif
 ifndef PD_PUBLIC_HEADERS_DIR
-  $(error p4c-bm does not define PD headers in PD_PUBLIC_HEADERS_DIR
+  $(error p4c-bm does not define PD headers in PD_PUBLIC_HEADERS_DIR)
 endif
 
 GLOBAL_INCLUDES += -I $(PUBLIC_INC_PATH)
@@ -108,7 +111,7 @@ endif
 
 BINARY := bm
 bm_LINK_LIBS := $(OBJ_FILES) $(BM_LIB) $(p4utils_LIB) $(p4ns_common_LIB) $(BMI_LIB) $(addprefix $(LIBRARY_DIR)/, $(LIBRARY_TARGETS)) $(addprefix $(LIBRARY_DIR)/, $(LIBRARY_TARGETS))  $(BM_PLUGIN_LIBS)
-bm : EXTRA_LINK_LIBS := ${BM_LIB} ${BM_LIBS_OPTIONAL} ${p4utils_LIB} ${BM_LIB} -lpthread -lpcap -lhiredis -lJudy -lthrift -ledit
+bm : EXTRA_LINK_LIBS := ${BM_LIB} ${BM_LIBS_OPTIONAL} ${p4utils_LIB} ${BM_LIB} -lpthread -lpcap -lhiredis -lJudy -lthrift -ledit $(LINK_USER_LIB)
 include ${MAKEFILES_DIR}/bin.mk
 
 bm : ${BM_LIB} $(bm_BINARY) ${GEN_THRIFT_PY_MODULE}

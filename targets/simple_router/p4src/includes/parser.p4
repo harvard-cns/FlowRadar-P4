@@ -19,6 +19,8 @@ parser start {
 }
 
 #define ETHERTYPE_IPV4 0x0800
+#define IPV4_TCP 0x0006
+#define IPV4_UDP 0x0011
 
 header ethernet_t ethernet;
 
@@ -61,5 +63,15 @@ calculated_field ipv4.hdrChecksum  {
 
 parser parse_ipv4 {
     extract(ipv4);
-    return ingress;
+    return select(latest.protocol){
+		IPV4_TCP : parse_tcp;
+		default: ingress;
+	}
+}
+
+header tcp_t tcp;
+
+parser parse_tcp {
+	extract(tcp);
+	return ingress;
 }

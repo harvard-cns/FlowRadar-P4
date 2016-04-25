@@ -25,11 +25,15 @@ include ../../init.mk
 ifndef P4FACTORY
 P4FACTORY := $(TARGET_ROOT)/../..
 endif
+$(info $$P4FACTORY is [${P4FACTORY}])
 MAKEFILES_DIR := ${P4FACTORY}/makefiles
 
 # This target's P4 name
 export P4_INPUT := p4src/simple_router.p4
 export P4_NAME := simple_router
+
+export USER_LIB_DIR := $(TARGET_ROOT)/flow_radar_bm
+export USER_LIB := flow_radar
 
 include ${MAKEFILES_DIR}/common.mk
 
