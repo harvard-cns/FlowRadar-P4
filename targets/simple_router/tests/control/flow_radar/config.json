@@ -1,0 +1,8 @@
+{
+    "simple_router" :
+    {
+	"binary_path" : "/home/bright/SDN/lossradar/p4factory/targets/simple_router/behavioral-model",
+	"pd_thrift_path" : "/home/bright/SDN/lossradar/p4factory/targets/simple_router/tests/pd_thrift"
+    }
+}
+

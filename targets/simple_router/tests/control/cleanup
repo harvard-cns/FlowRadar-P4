@@ -1,0 +1,39 @@
+#!/usr/bin/python
+
+import json
+import subprocess
+import os
+
+def _get_switch_config(config_path = "config.json"):
+    with open(config_path, 'r') as config_file:
+        return json.load(config_file)
+
+# TODO improve
+
+sw_binaries = ["dc_full_adv", "dc_full", "behavioral-model", "network_gui.py"]
+
+def main():
+    cmd = ['sudo', 'mn', '-c']
+    print ' '.join(cmd)
+    subprocess.call(cmd)
+
+    #switch_config = _get_switch_config()
+    #for sw, config in switch_config.items():
+    #    binary_path = config["binary_path"]
+    #    binary = os.path.basename(os.path.normpath(binary_path))
+    #    cmd = ['sudo', 'killall', binary]
+    #    print ' '.join(cmd)
+    #    subprocess.call(cmd)
+
+    for binary_path in sw_binaries:
+        binary = os.path.basename(os.path.normpath(binary_path))
+        cmd = ['sudo', 'killall', '-q', binary]
+        print ' '.join(cmd)
+        subprocess.call(cmd)
+
+    cmd = ['redis-cli', 'FLUSHDB']
+    print ' '.join(cmd)
+    subprocess.call(cmd)
+
+if __name__ == '__main__':
+    main()
