@@ -3,14 +3,10 @@ FlowRadar
 
 ## Build
 
-    cd targets/simple_router/flow_radar_bm
-    make
-    cd ..
-    make bm
-    cd flow_radar_bm
-    python change.py
-    cd ..  
-    make bm
+    cd targets/simple_router/flow_radar_bm; make
+    cd ..; make bm
+    cd flow_radar_bm; python change.py
+    cd ..; make bm
 
 ## run
 
